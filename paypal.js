@@ -46,7 +46,7 @@ export async function capturePayment(orderId) {
 }
 
 async function generateAccessToken() {
-    const response = await fetch(base + "/v1/oauth2/token", {
+    const response = await fetch(`${base}/v1/oauth2/token`, {
         method: "post",
         body: "grant_type=client_credentials",
         headers: {
@@ -55,5 +55,6 @@ async function generateAccessToken() {
         },
     });
     const data = await response.json();
+    console.log(data);
     return data.access_token;
 }

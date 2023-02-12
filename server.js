@@ -5,10 +5,6 @@ const app = express();
 
 app.use(express.static("./"));
 
-app.get("/", function (_, res) {
-    res.render("index", {});
-});
-
 app.post("/api/orders", async (_, res) => {
     const order = await paypal.createOrder();
     res.json(order);
