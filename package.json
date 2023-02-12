@@ -1,0 +1,25 @@
+{
+    "type": "module",
+    "name": "sweproject",
+    "version": "1.0.0",
+    "description": "PayPal and backend for Project",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/qadischaudhry/SWEProject.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/qadischaudhry/SWEProject/issues"
+    },
+    "homepage": "https://github.com/qadischaudhry/SWEProject#readme",
+    "dependencies": {
+        "dotenv": "^16.0.3",
+        "express": "^4.18.2",
+        "node-fetch": "^3.3.0"
+    }
+}
