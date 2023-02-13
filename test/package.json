@@ -1,5 +1,5 @@
 {
-    "type": "module",
+    "type": "commonjs",
     "name": "sweproject",
     "version": "1.0.0",
     "description": "PayPal and backend for Project",
