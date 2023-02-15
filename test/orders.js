@@ -6,10 +6,9 @@ var ref = db.ref("/Orders/");
 var oid = "192457395872";
 ref.child(`${oid}`).set({
     title: "Tylenol",
-    oid: oid,
     price: 10.00,
     uid: "akdsjfljdas",
-    status: "verified"
+    status: "pending"
 })
 
 ref.child(`${oid}`).on('value', (snapshot) => {

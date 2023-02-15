@@ -1,10 +1,11 @@
-import fetch from "node-fetch";
-import "dotenv/config";
+var fetch = (...args) => import("node-fetch").then(({default: fetch}) => fetch(...args));
 
-const { CLIENT_ID, APP_SECRET } = process.env;
+const CLIENT_ID = "ATRkqSYtViDKAC5pDqNHep_HRLwEKkDSt4cp97r4u1KeV_Ca8SL1gQj_lhPv5-71TSEt6GdtkkuGDhzt"
+const APP_SECRET = "EOgSXbL9wbXoocQCIymU0GPibLjs9_HDpTCqtZxpru5ONHC2Nq5Zkgxb01xMZ1sMG_qAdEt5Rg0tR4H5"
+
 const base = "https://api-m.sandbox.paypal.com";
 
-export async function createOrder() {
+async function createOrder() {
     const accessToken = await generateAccessToken();
     const url = `${base}/v2/checkout/orders`;
     const response = await fetch(url, {
@@ -30,7 +31,7 @@ export async function createOrder() {
     return data;
 }
 
-export async function capturePayment(orderId) {
+async function capturePayment(orderId) {
     const accessToken = await generateAccessToken();
     const url = `${base}/v2/checkout/orders/${orderId}/capture`;
     const response = await fetch(url, {
@@ -58,3 +59,5 @@ async function generateAccessToken() {
     console.log(data);
     return data.access_token;
 }
+
+module.exports = { createOrder, capturePayment }
