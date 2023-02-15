@@ -11,6 +11,6 @@ ref.child(`${oid}`).set({
     status: "pending"
 })
 
-ref.child(`${oid}`).on('value', (snapshot) => {
+ref.child(`${oid}`).on("value", (snapshot) => {
     console.log(snapshot.val());
 })
