@@ -5,18 +5,10 @@ const url = require("url");
 var paypal = require("./paypal.js");
 
 const server = http.createServer((req, res) => {
-    let captureUrl = url.parse(req.url).pathname.match(/^\/api\/orders\/([^\/]+)\/capture$/);
-    if (req.url === "/script.js") {
-        fs.readFile(`./public/script.js`, (err, data) => {
-            if (err) {
-                res.writeHead(500);
-                res.end(err.message);
-            } else {
-                res.writeHead(200);
-                res.end(data);
-            }
-        });
-    } else if (req.url === "/api/orders" && req.method == "POST") {
+    let reqUrl = url.parse(req.url).pathname == "/" ? "index.html" : url.parse(req.url).pathname;
+    let captureUrl = reqUrl.match(/^\/api\/orders\/([^\/]+)\/capture$/);
+
+    if (reqUrl === "/api/orders" && req.method == "POST") {
         paypal.createOrder()
             .then(order => {
                 res.statusCode = 200;
@@ -28,7 +20,7 @@ const server = http.createServer((req, res) => {
                 res.setHeader("Content-Type", "text/plain");
                 res.end(`Error creating order: ${error}`);
             });
-    } else if (captureUrl != null && req.url === captureUrl[0] && req.method == "POST") {
+    } else if (captureUrl != null && reqUrl === captureUrl[0] && req.method == "POST") {
         const orderId = captureUrl[1];
         console.log(orderId);
         paypal.capturePayment(orderId)
@@ -43,7 +35,7 @@ const server = http.createServer((req, res) => {
                 res.end(`Error creating order: ${error}`);
             });
     } else {
-        fs.readFile(`./public/index.html`, (err, data) => {
+        fs.readFile(`./public/${reqUrl}`, (err, data) => {
             if (err) {
                 res.writeHead(500);
                 res.end(err.message);
