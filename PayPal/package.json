@@ -19,7 +19,6 @@
     "homepage": "https://github.com/qadischaudhry/SWEProject#readme",
     "dependencies": {
         "firebase": "^9.17.1",
-        "firebase-admin": "^11.5.0",
-        "node-fetch": "^3.3.0"
+        "firebase-admin": "^11.5.0"
     }
 }
