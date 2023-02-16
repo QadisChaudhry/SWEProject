@@ -3,7 +3,7 @@ const APP_SECRET = "EOgSXbL9wbXoocQCIymU0GPibLjs9_HDpTCqtZxpru5ONHC2Nq5Zkgxb01xM
 
 const base = "https://api-m.sandbox.paypal.com";
 
-async function createOrder() {
+async function create() {
     const accessToken = await generateAccessToken();
     const url = `${base}/v2/checkout/orders`;
     const response = await fetch(url, {
@@ -29,7 +29,7 @@ async function createOrder() {
     return data;
 }
 
-async function capturePayment(orderId) {
+async function capture(orderId) {
     const accessToken = await generateAccessToken();
     const url = `${base}/v2/checkout/orders/${orderId}/capture`;
     const response = await fetch(url, {
@@ -58,4 +58,4 @@ async function generateAccessToken() {
     return data.access_token;
 }
 
-module.exports = { createOrder, capturePayment }
+module.exports = { create, capture }
