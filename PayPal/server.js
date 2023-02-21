@@ -3,6 +3,7 @@ const fs = require("fs");
 const url = require("url");
 
 const { createOrder, captureOrder } = require("./paypalController");
+const { createProduct } = require("./order/productController");
 
 var paypal = require("./paypal.js");
 
@@ -12,6 +13,8 @@ const server = http.createServer((req, res) => {
 
     if (reqUrl === "/api/orders" && req.method == "POST") {
         createOrder(req, res);
+    } else if (reqUrl === "/api/products" && req.method === "POST") {
+        createProduct(req, res);
     } else if (captureUrl != null && reqUrl === captureUrl[0] && req.method == "POST") {
         const orderId = captureUrl[1];
         console.log(orderId);
